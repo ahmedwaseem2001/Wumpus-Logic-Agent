@@ -11,8 +11,11 @@ function App() {
   const [gold, setGold] = useState({});
   const [message, setMessage] = useState("");
 
+
+  const backendURL = "https://wumpus-logic-agent-production.up.railway.app";
+
   const init = async () => {
-    await fetch("wumpus-logic-agent-production.up.railway.app", {
+    await fetch(`${backendURL}/init`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -26,7 +29,7 @@ function App() {
   };
 
   const updateState = async () => {
-    const res = await fetch("https://wumpus-logic-agent-production.up.railway.app");
+    const res = await fetch(`${backendURL}/state`);
     const data = await res.json();
 
     setAgent(data.agent);
@@ -36,7 +39,7 @@ function App() {
   };
 
   const move = async (x, y) => {
-    const res = await fetch("http://localhost:3000/move", {
+    const res = await fetch(`${backendURL}/move`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ x, y })
