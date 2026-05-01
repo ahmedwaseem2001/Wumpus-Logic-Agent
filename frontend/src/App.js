@@ -12,7 +12,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   const init = async () => {
-    await fetch("http://localhost:3000/init", {
+    await fetch("wumpus-logic-agent-production.up.railway.app", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
