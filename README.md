@@ -1,26 +1,40 @@
-Wumpus World Agent
-A full-stack web application that simulates the classic AI Wumpus World problem. The project consists of a React-based frontend for visualizing the grid and interacting with the agent, and an Express/Node.js backend for managing the game state, logic, and generating percepts.
 
-Table of Contents
-Features
-Technologies Used
-Project Structure
-Installation and Setup
-API Endpoints
-How to Play
-Future Improvements
-Features
-Dynamic Grid Setup: Start the game with customizable grid dimensions (rows and columns).
-Backend-Driven Logic: The game state, including the locations of the Wumpus, pits, gold, and the agent, is securely managed on the server.
-Percepts Simulation: Generates environmental percepts dynamically based on adjacent hazards (e.g., Stench for the Wumpus, Breeze for Pits).
-Basic Inference Engine: Performs safety checks on the backend before allowing the agent to move, keeping track of the logical inference steps.
-Goal Checking: Automatically detects if the agent has reached the gold, triggering a win condition.
-Interactive UI: A clean, responsive React interface that visualizes the grid, the agent's current position, active percepts, the gold location, and the number of inference steps taken.
-Technologies Used
-Frontend: React.js, HTML5, CSS3
-Backend: Node.js, Express.js
-Middleware: CORS
-Project Structure
+# Wumpus World Agent
+
+A full-stack web application that simulates the classic AI **Wumpus World** problem[cite: 2]. The project consists of a React-based frontend for visualizing the grid and interacting with the agent, and an Express/Node.js backend for managing the game state, logic, and generating percepts[cite: 2].
+
+---
+
+## 📋 Table of Contents
+- [Features](#features)[cite: 2]
+- [Technologies Used](#technologies-used)[cite: 2]
+- [Project Structure](#project-structure)[cite: 2]
+- [Installation and Setup](#installation-and-setup)[cite: 2]
+- [API Endpoints](#api-endpoints)[cite: 2]
+- [How to Play](#how-to-play)[cite: 2]
+- [Future Improvements](#future-improvements)[cite: 2]
+
+---
+
+## ✨ Features
+*   **Dynamic Grid Setup**: Start the game with customizable grid dimensions (rows and columns)[cite: 2].
+*   **Backend-Driven Logic**: The game state (Wumpus, pits, gold, agent) is securely managed on the server[cite: 2].
+*   **Percepts Simulation**: Generates percepts dynamically (e.g., *Stench* for Wumpus, *Breeze* for Pits)[cite: 2].
+*   **Basic Inference Engine**: Performs backend safety checks before allowing agent moves[cite: 2].
+*   **Goal Checking**: Automatically detects if the agent has reached the gold to trigger a win[cite: 2].
+*   **Interactive UI**: Responsive React interface showing grid, percepts, and inference steps[cite: 2].
+
+---
+
+## 🛠️ Technologies Used
+*   **Frontend**: React.js, HTML5, CSS3[cite: 2]
+*   **Backend**: Node.js, Express.js[cite: 2]
+*   **Middleware**: CORS[cite: 2]
+
+---
+
+## 📂 Project Structure
+```text
 wumpus-agent/
 │
 ├── backend/
@@ -35,54 +49,70 @@ wumpus-agent/
         ├── Grid.js       # UI component for rendering the Wumpus grid
         ├── index.js      # React entry point
         └── styles.css    # Application styling
-Installation and Setup
-Prerequisites
-Make sure you have Node.js installed on your machine.
+```
+[cite: 2]
 
-1. Clone the Repository
-If you haven't already, clone this repository to your local machine and navigate into the project directory.
+---
 
+## 🚀 Installation and Setup
+
+### Prerequisites
+Make sure you have **Node.js** installed on your machine[cite: 2].
+
+### 1. Clone the Repository
+```bash
 git clone <your-repository-url>
 cd "wumpus agent"
-2. Setup the Backend
-Open a terminal, navigate to the backend directory, install the dependencies, and start the server.
+```
+[cite: 2]
 
+### 2. Setup the Backend
+Open a terminal, navigate to the backend directory, install dependencies, and start the server[cite: 2].
+```bash
 cd backend
 npm install
 node server.js
-The backend server will start running on http://localhost:3000.
+```
+[cite: 2]
+*Backend running on: http://localhost:3000*[cite: 2]
 
-3. Setup the Frontend
-Open a new terminal, navigate to the frontend directory, install the dependencies, and start the React application.
-
+### 3. Setup the Frontend
+Open a new terminal, navigate to the frontend directory, install dependencies, and start the React application[cite: 2].
+```bash
 cd frontend
 npm install
 npm start
-Note: Since the backend is running on port 3000, React may prompt you to run the frontend on a different port (typically http://localhost:3001). Type Y to accept.
+```
+[cite: 2]
+> **Note**: If prompted to run on a different port (e.g., 3001), type **Y** to accept[cite: 2].
 
-API Endpoints
-The backend exposes the following RESTful endpoints:
+---
 
-POST /init: Initializes a new game grid with randomized hazards and gold.
+## 🔌 API Endpoints
+*   **`POST /init`**: Initializes a new game grid[cite: 2].
+    *   *Body*: `{ "rows": 4, "cols": 4 }`[cite: 2]
+*   **`GET /state`**: Retrieves the current agent and environment state[cite: 2].
+*   **`POST /move`**: Attempts to move the agent to specific coordinates `{ x, y }`[cite: 2].
 
-Body: { "rows": 4, "cols": 4 }
-Response: { "ok": true }
-GET /state: Retrieves the current state of the agent and environment.
+---
 
-Response: { "agent": { "x": 0, "y": 0 }, "percepts": ["Breeze"], "inferenceSteps": 1, "gold": { "x": 2, "y": 3 } }
-POST /move: Attempts to move the agent to a specified coordinate. The move is only executed if the target tile is deemed safe by the backend inference logic.
+## 🎮 How to Play
+1. Launch both backend and frontend servers[cite: 2].
+2. Specify grid dimensions in the web interface[cite: 2].
+3. Click **Start** to initialize[cite: 2].
+4. Click adjacent cells to move the agent (**A**)[cite: 2].
+5. Use **Percepts** (Breeze, Stench) to avoid hazards[cite: 2].
+6. Find the **Gold (G)** to win![cite: 2]
 
-Body: { "x": 1, "y": 0 }
-Response: Returns the updated state (agent position, percepts, inference steps, gold, and optional success message).
-How to Play
-Launch both the backend and frontend servers as described in the setup instructions.
-In the web interface, specify your desired grid dimensions (Rows and Columns).
-Click Start to initialize the game.
-Click on an adjacent cell in the grid to move the agent (represented by A).
-Observe the Percepts (Breeze, Stench) at the bottom to deduce the locations of pits or the Wumpus. The backend logic will prevent you from moving into dangerous cells.
-Find the cell containing the Gold (G) to achieve the goal!
-Future Improvements
-Advanced AI Agent: Implement automated AI algorithms (like Propositional Logic or First-Order Logic solvers) to allow the agent to navigate and solve the grid autonomously.
-Visual Enhancements: Add rich graphics, icons, or images for the Wumpus, Pits, Gold, and the Agent.
-Scoring System & Actions: Introduce scoring mechanisms, and allow the agent to pick up the gold or shoot arrows at the Wumpus.
-Fog of War: Hide unvisited cells to make the exploration experience more authentic.
+---
+
+## 🔮 Future Improvements
+*   **Advanced AI Agent**: Implement automated Propositional Logic solvers[cite: 2].
+*   **Visual Enhancements**: Add rich graphics/icons for game entities[cite: 2].
+*   **Scoring System**: Introduce points and arrow-shooting mechanics[cite: 2].
+*   **Fog of War**: Hide unvisited cells for authentic exploration[cite: 2].
+```
+
+
+3.  Niche **"Commit changes"** par click karein.
+4.  Aapka project ab professional nazar aaye ga! Isme aapka **package-lock.json**[cite: 1, 2] aur **wumpus agent report.docx**[cite: 3] bhi background mein properly linked rahen ge.
