@@ -26,7 +26,7 @@ function App() {
   };
 
   const updateState = async () => {
-    const res = await fetch("http://localhost:3000/state");
+    const res = await fetch("https://wumpus-logic-agent-production.up.railway.app");
     const data = await res.json();
 
     setAgent(data.agent);
